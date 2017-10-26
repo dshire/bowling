@@ -24,15 +24,43 @@ io.on('connection', function(socket) {
             let result = Math.floor(Math.random() * 11);
             playerFrames[frame].roll1 = result;
 
-            if (result == 10) {
+            if (result == 10 && frame != 9) {
                 playerFrames[frame].roll2 = 0;
                 frame++;
             }
         } else {
-            let result = Math.floor(Math.random() * (11 - playerFrames[frame].roll1));
-            playerFrames[frame].roll2 = result;
+            if (frame == 9) {
+                if (playerFrames[frame].roll2 >= 0 && playerFrames[frame].roll1 == 10) {
+                    let result;
+                    if (playerFrames[frame].roll2 == 10) {
+                        result = Math.floor(Math.random() * 11);
+                    } else {
+                        result = Math.floor(Math.random() * (11 - playerFrames[frame].roll2));
+                    }
+                    playerFrames[frame].roll3 = result;
+                    frame++;
+                } else if (playerFrames[frame].roll1 < 10 && playerFrames[frame].roll1 + playerFrames[frame].roll2 == 10) {
+                    let result = Math.floor(Math.random() * 11);
+                    playerFrames[frame].roll3 = result;
+                    frame++;
+                } else {
+                    let result;
+                    if (playerFrames[frame].roll1 == 10) {
+                        result = Math.floor(Math.random() * 11);
+                    } else {
+                        result = Math.floor(Math.random() * (11 - playerFrames[frame].roll1));
+                    }
+                    playerFrames[frame].roll2 = result;
+                    if (playerFrames[frame].roll1 + playerFrames[frame].roll2 < 10) {
+                        frame++;
+                    }
+                }
+            } else {
+                let result = Math.floor(Math.random() * (11 - playerFrames[frame].roll1));
+                playerFrames[frame].roll2 = result;
 
-            frame++;
+                frame++;
+            }
         }
 
         calcScore()

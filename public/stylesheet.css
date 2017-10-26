@@ -48,3 +48,21 @@ body {
     border: solid 1px black;
     position: relative;
 }
+
+.roll1 {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.roll2 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.score {
+    position: absolute;
+    left: 20px;
+    bottom: 5px;
+}
