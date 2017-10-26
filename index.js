@@ -12,7 +12,6 @@ app.get('/',function(req,res){
 io.on('connection', function(socket) {
     let playerFrames = [];
     let frame = 0;
-    socket.emit('welcome');
 
     socket.on('roll', () => {
 
@@ -63,7 +62,7 @@ io.on('connection', function(socket) {
             }
         }
 
-        calcScore()
+        calcScore();
 
         console.log(playerFrames);
 

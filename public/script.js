@@ -1,12 +1,10 @@
 const socket = io.connect();
 
-socket.on('welcome',() => {
-    document.body.insertAdjacentHTML('beforeend', '<div class="welcome">Welcome to Babbelonian Bowling</div>');
-});
-
 
 $('.button').on('click',() => {
+    $('.pins').remove();
     socket.emit('roll');
+    $('.button').after('<img src="./pins.png" alt="pins" class="pins">')
 });
 
 socket.on('roll', (data) => {
@@ -19,13 +17,13 @@ socket.on('roll', (data) => {
                 data.playerFrames[i].roll1 = 'X';
                 data.playerFrames[i].roll2 = ''
             } else if (data.playerFrames[i].roll2 == 10) {
-                data.playerFrames[i].roll2 = 'X'
+                data.playerFrames[i].roll2 = '/'
             } else if (data.playerFrames[i].roll1 + data.playerFrames[i].roll2 == 10) {
                 data.playerFrames[i].roll2 = '/'
             }
-            $('.' + frame).html(`<p class="roll1">${data.playerFrames[i].roll1}</p><p class="roll2">${data.playerFrames[i].roll2}</p><p class="score">${data.playerFrames[i].score}</p>`)
+            $('.' + frame).html(`<p class="roll1">${data.playerFrames[i].roll1}</p><p class="roll2">${data.playerFrames[i].roll2}</p><p class="score">${data.playerFrames[i].score}</p><div class="corner"></div>`)
         } else {
-            $('.' + frame).html(`<span class="points"><p class="roll1">${data.playerFrames[i].roll1}</p></span>`)
+            $('.' + frame).html(`<span class="points"><p class="roll1">${data.playerFrames[i].roll1}</p></span><div class="corner"></div>`)
         }
     }
 });
