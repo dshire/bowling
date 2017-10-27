@@ -2,8 +2,8 @@
 
 ## To run:
 1. Clone repo and open directory: ```git clone git@github.com:dshire/bowling.git``` then ```cd bowling```
-2. ```npm install``` in console
-3. ```node index.js``` in console
+2. ```npm install```
+3. ```node index.js```
 4. Go to ```localhost:8080``` in your browser
 5. Play
 
