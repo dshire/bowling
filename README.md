@@ -13,5 +13,6 @@
 * Game logic stays server-side to prevent game manipulation by the client
 
 ### Next steps: 
-1. Finishing the logic for the last frame 
-2. Adding multiple online players through Socket.IO
+1. Finishing the logic for the last frame
+2. Restart game function
+3. Adding multiple online players through Socket.IO
